@@ -1,0 +1,106 @@
+
+spring:
+  profiles:  # 环境切换
+    active: dev
+  application:
+    name: api-gateway
+# 日志级别
+logging:
+  path: /var/log/spring-cloud-learn
+  file: ${spring.application.name}.log
+  level:
+    ROOT: debug
+zuul:
+  sensitive-headers:
+  strip-prefix: true
+  host:
+    socket-timeout-millis: 60000
+    connect-timeout-millis: 60000
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+  eureka:
+    enabled: true
+
+#  servlet-path: /
+#security:
+#  basic:
+#    enabled: false
+#  oauth2:
+#    resource:
+#      prefer-token-info: false
+
+---
+# 开发环境
+spring:
+  profiles: dev
+server:
+  port: 8605
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://xiaoliu:admin@localhost:8606/eureka/
+
+zuul:
+  routes:
+    chart-service:
+      path: /chart/**
+  # 取消重试机制
+  retryable: false
+  add-host-header: true
+logging:
+  path: /var/log/sc-modules
+  file: ${spring.application.name}.log
+  level: debug
+
+# swagger 配置
+swagger:
+ show: true
+
+
+---
+
+# 测试环境
+spring:
+  profiles: test
+server:
+  port: 8613
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://xiaoliu:admin@127.0.0.1:8614/eureka/
+zuul:
+  routes:
+    chart-service:
+      path: /chart/**
+  # 取消重试机制
+  retryable: false
+  add-host-header: true
+# swagger 配置
+swagger:
+ show: true
+
+---
+
+# 生产环境
+spring:
+  profiles: prod
+server:
+  port: 8605
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://xiaoliu:admin@127.0.0.1:8606/eureka/
+
+# swagger 配置
+swagger:
+ show: false
