@@ -54,6 +54,8 @@ zuul:
   routes:
     chart-service:
       path: /chart/**
+    rocketmq-service:
+      path: /rocketmq/**
   # 取消重试机制
   retryable: false
   add-host-header: true
@@ -73,34 +75,20 @@ swagger:
 spring:
   profiles: test
 server:
-  port: 8613
+  port: 8605
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://xiaoliu:admin@127.0.0.1:8614/eureka/
+      defaultZone: http://xiaoliu:admin@127.0.0.1:8606/eureka/
 zuul:
   routes:
     chart-service:
       path: /chart/**
+    rocketmq-service:
+      path: /rocketmq/**
   # 取消重试机制
   retryable: false
   add-host-header: true
 # swagger 配置
 swagger:
  show: true
-
----
-
-# 生产环境
-spring:
-  profiles: prod
-server:
-  port: 8605
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://xiaoliu:admin@127.0.0.1:8606/eureka/
-
-# swagger 配置
-swagger:
- show: false

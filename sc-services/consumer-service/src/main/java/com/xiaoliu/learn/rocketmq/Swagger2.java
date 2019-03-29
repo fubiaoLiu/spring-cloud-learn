@@ -1,4 +1,4 @@
-package com.xiaoliu.learn.chartservice;
+package com.xiaoliu.learn.rocketmq;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -12,9 +12,9 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * Swagger2配置类
- * <p>
- * Created by Zeng on 2018/4/26.
+ * @description: swagger配置类
+ * @author: FubiaoLiu
+ * @date: 2019/3/28
  */
 @Configuration
 @EnableSwagger2
@@ -36,8 +36,8 @@ public class Swagger2 {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("图表库微服务")
-                .description("图表库微服务API文档")
+                .title("RocketMQ服务")
+                .description("RocketMQ服务API文档")
                 .version("1.0")
                 .build();
     }

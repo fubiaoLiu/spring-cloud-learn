@@ -49,24 +49,3 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8606/eureka/
----
-
-# 生产环境
-spring:
-  profiles: prod
-  cloud:
-      config:
-        label: master
-        server:
-          git:
-            username: git
-            password: 123456
-            uri: http://192.168.100.1:32797/learn/sc-config.git
-            searchPaths: config-repo
-server:
-  port: 8603
-## eureka server
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8601/eureka/

@@ -1,7 +1,7 @@
 spring:
 # 应用名
   application:
-    name: chart-service
+    name: producer-service
 # 环境切换
   profiles:
     active: dev
@@ -44,22 +44,42 @@ logging:
 #security:
 #  basic:
 #    enabled: false
+
+# RocketMQ生产者
+rocketmq:
+  producer:
+    # Producer组名，多个Producer如果属于一个应用，发送同样的消息，则应该将它们归为同一组。默认DEFAULT_PRODUCER
+    producerGroup: ${spring.application.name}
+    # namesrv地址
+    namesrvAddr: 192.168.101.213:9876
+    # 客户端限制的消息大小，超过报错，同时服务端也会限制，需要跟服务端配合使用。默认4MB
+    maxMessageSize: 4096
+    # 发送消息超时时间，单位毫秒。默认10000
+    sendMsgTimeout: 5000
+    # 如果消息发送失败，最大重试次数，该参数只对同步发送模式起作用。默认2
+    retryTimesWhenSendFailed: 2
+    # 消息Body超过多大开始压缩（Consumer收到消息会自动解压缩），单位字节。默认4096
+    compressMsgBodyOverHowmuch: 4096
+    # 在发送消息时，自动创建服务器不存在的topic，需要指定Key，该Key可用于配置发送消息所在topic的默认路由。
+    createTopicKey: XIAO_LIU
 ---
 # 开发环境
 server:
-  port: 7002
+  port: 7001
   max-http-header-size: 40960
 spring:
   profiles: dev
   datasource:
       name: mysqlDataSource
-      url: jdbc:mysql://192.168.101.1:3308/learn_dev?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8
+      url: jdbc:mysql://192.168.101.217:3308/rectification_dev?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8
       username: dev
-      password: 123456
+      password: x1skrFBxdtFl3p4G
       driver-class-name: com.mysql.jdbc.Driver
  #配置注册中心
 eureka:
   client:
+    register-with-eureka: false
+    fetch-registry: false
     serviceUrl:
       defaultZone: http://xiaoliu:admin@localhost:8606/eureka/
 #mybatis的配置
@@ -72,7 +92,7 @@ swagger:
 ---
 # 测试环境
 server:
-  port: 7002
+  port: 7001
   max-http-header-size: 40960
 spring:
   profiles: test

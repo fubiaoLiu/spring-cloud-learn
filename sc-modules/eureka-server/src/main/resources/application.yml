@@ -57,21 +57,4 @@ eureka:
     fetchRegistry: false
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
----
 
-# 生产环境
-spring:
-  profiles: prod
-server:
-  port: 8606
-eureka:
-  instance:
-    hostname: localhost
-  server:
-    ## 清理时间间隔，单位毫秒，默认是60*1000）
-    evictionIntervalTimerInMs: 30000
-  client:
-    registerWithEureka: false
-    fetchRegistry: false
-    serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/

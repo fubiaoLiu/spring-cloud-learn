@@ -1,7 +1,7 @@
 spring:
 # 应用名
   application:
-    name: chart-service
+    name: consumer-service
 # 环境切换
   profiles:
     active: dev
@@ -44,6 +44,25 @@ logging:
 #security:
 #  basic:
 #    enabled: false
+
+# RocketMQ消费者
+rocketmq:
+  consumer:
+    # Consumer组名，多个Consumer如果属于一个应用，订阅同样的消息，且消费逻辑一致，则应该将它们归为同一组。默认DEFAULT_CONSUMER
+    consumerGroup: ${spring.application.name}
+    # namesrv地址
+    namesrvAddr: 192.168.101.213:9876
+    # 消费线程池最大线程数。默认10
+    consumeThreadMin: 10
+    # 消费线程池最大线程数。默认20
+    consumeThreadMax: 20
+    # 批量消费，一次消费多少条消息。默认1
+    consumeMessageBatchMaxSize: 1
+    # 批量拉消息，一次最多拉多少条。默认32
+    pullBatchSize: 32
+    # 订阅的主题
+    topics: user-topic
+
 ---
 # 开发环境
 server:
@@ -53,13 +72,15 @@ spring:
   profiles: dev
   datasource:
       name: mysqlDataSource
-      url: jdbc:mysql://192.168.101.1:3308/learn_dev?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8
+      url: jdbc:mysql://192.168.101.217:3308/rectification_dev?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8
       username: dev
-      password: 123456
+      password: x1skrFBxdtFl3p4G
       driver-class-name: com.mysql.jdbc.Driver
  #配置注册中心
 eureka:
   client:
+    register-with-eureka: false
+    fetch-registry: false
     serviceUrl:
       defaultZone: http://xiaoliu:admin@localhost:8606/eureka/
 #mybatis的配置
