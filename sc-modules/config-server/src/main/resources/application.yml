@@ -1,24 +1,35 @@
 
 spring:
   profiles:  # 环境切换
-    active: dev
+    active: native
   application:
     name: config-server
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh
 ---
 
 # 开发环境
 spring:
-  profiles: dev
+  profiles: native
   cloud:
       config:
-        label: master
+#        label: master
         server:
-          git:
-            username: git
-            password: 123456
-            uri: http://192.168.100.1:32797/learn/sc-config.git
-            searchPaths: config-repo
+          native:
+            search-locations: F:/springcloud/config/dev
+#          git:
+#            username: git
+#            password: 123456
+#            uri: http://192.168.100.1:32797/learn/sc-config.git
+#            searchPaths: config-repo
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: springcloud
+    password: 123456
 server:
   port: 8607
 
@@ -26,7 +37,7 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8606/eureka/
+      defaultZone: http://xiaoliu:admin@localhost:8606/eureka/
 
 ---
 
@@ -48,4 +59,4 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8606/eureka/
+      defaultZone: http://xiaoliu:admin@localhost:8606/eureka/
