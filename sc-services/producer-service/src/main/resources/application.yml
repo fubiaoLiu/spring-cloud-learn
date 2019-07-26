@@ -51,7 +51,7 @@ rocketmq:
     # Producer组名，多个Producer如果属于一个应用，发送同样的消息，则应该将它们归为同一组。默认DEFAULT_PRODUCER
     producerGroup: ${spring.application.name}
     # namesrv地址
-    namesrvAddr: 192.168.101.213:9876
+    namesrvAddr: 192.168.101.216:9876;192.168.101.217:9876;192.168.101.218:9876
     # 客户端限制的消息大小，超过报错，同时服务端也会限制，需要跟服务端配合使用。默认4MB
     maxMessageSize: 4096
     # 发送消息超时时间，单位毫秒。默认10000
@@ -71,15 +71,15 @@ spring:
   profiles: dev
   datasource:
       name: mysqlDataSource
-      url: jdbc:mysql://192.168.101.217:3308/rectification_dev?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8
-      username: dev
-      password: x1skrFBxdtFl3p4G
+      url: jdbc:mysql://192.168.101.1:3306/learn_dev?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8
+      username: root
+      password: 123456
       driver-class-name: com.mysql.jdbc.Driver
  #配置注册中心
 eureka:
   client:
-    register-with-eureka: false
-    fetch-registry: false
+#    register-with-eureka: false
+#    fetch-registry: false
     serviceUrl:
       defaultZone: http://xiaoliu:admin@localhost:8606/eureka/
 #mybatis的配置
