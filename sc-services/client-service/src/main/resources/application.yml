@@ -1,0 +1,49 @@
+#spring:
+## 应用名
+#  application:
+#    name: client-service
+## 环境切换
+#  profiles:
+#    active: dev
+
+# 日志配置
+logging:
+  config: classpath:log4j2.yml
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh
+# spring security 基础认证关闭
+#security:
+#  basic:
+#    enabled: false
+---
+## 开发环境
+#server:
+#  port: 7004
+#  max-http-header-size: 40960
+#spring:
+#  profiles: dev
+#  rabbitmq:
+#    host: localhost
+#    port: 5672
+#    username: springcloud
+#    password: 123456
+#  cloud:
+#    config:
+#      profile: dev
+##      uri: http://localhost:8607/
+#      discovery:
+#        enabled: true
+#        service-id: config-server
+#      fail-fast: true
+##配置注册中心
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://xiaoliu:admin@localhost:8606/eureka/
+
+# 控制swagger-ui的显示隐藏：true->显示，false->隐藏
+swagger:
+ show: true
