@@ -1,0 +1,63 @@
+spring:
+  # 应用名
+  application:
+    name: demo-service
+  # 环境切换
+  profiles:
+    active: dev
+
+# 日志配置
+logging:
+  config: classpath:log4j2.yml
+
+# spring security 基础认证关闭
+#security:
+#  basic:
+#    enabled: false
+---
+# 开发环境
+server:
+  port: 7002
+  max-http-header-size: 40960
+spring:
+  profiles: dev
+  datasource:
+    name: mysqlDataSource
+    url: jdbc:mysql://192.168.101.1:3306/learn_dev?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    testOnBorrow: true
+    validationQuery: select 1
+  #配置注册中心
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://xiaoliu:admin@localhost:8606/eureka/
+#mybatis的配置
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+---
+# 测试环境
+server:
+  port: 7002
+  max-http-header-size: 40960
+spring:
+  profiles: test
+  datasource:
+    name: mysqlDataSource
+    url: jdbc:mysql://192.168.101.1:3306/learn_test?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8
+    username: test
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+
+    #配置注册中心
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://xiaoliu:admin@localhost:8606/eureka/
+#mybatis的配置
+mybatis:
+  mapper-locations: classpath:mapper/*.xml

@@ -48,14 +48,16 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://xiaoliu:admin@localhost:8606/eureka/
+      defaultZone: http://xiaoliu:admin@localhost:8406/eureka/
 
 zuul:
   routes:
     chart-service:
       path: /chart/**
-    rocketmq-service:
-      path: /rocketmq/**
+    producer-service:
+      path: /producer/**
+    consumer-service:
+      path: /consumer/**
   # 取消重试机制
   retryable: false
   add-host-header: true

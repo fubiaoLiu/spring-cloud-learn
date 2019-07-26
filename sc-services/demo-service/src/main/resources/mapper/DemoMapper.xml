@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoliu.learn.demo.mapper.DemoMapper">
+    <!-- 数据字典返回集 -->
+    <resultMap id="DictionaryMap" type="com.xiaoliu.learn.demo.model.Dictionary">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="category" property="category" jdbcType="VARCHAR"/>
+        <result column="category_name" property="categoryName" jdbcType="VARCHAR"/>
+        <result column="code_value" property="codeValue" jdbcType="VARCHAR"/>
+        <result column="code_text" property="codeText" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="order_num" property="orderNum" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="getDictOptionByName" parameterType="java.lang.String" resultMap="DictionaryMap">
+        SELECT
+        a.code_value,
+        a.code_text
+        FROM base_dictionary a
+        where a.category_name = #{categoryName}
+        ORDER BY a.order_num
+    </select>
+
+    <insert id="insert" parameterType="com.xiaoliu.learn.demo.model.Dictionary">
+        insert into base_dictionary(category,category_name,code_value,code_text)
+        values (#{category},#{categoryName},#{codeValue},#{codeText})
+    </insert>
+    <!-- 动态查询条件 -->
+    <sql id="Base_where_List">
+        WHERE 1 = 1
+        <!-- ID -->
+        <if test="id != null">and a.id = #{id}</if>
+        <!-- 字典分类 -->
+        <if test="category != null and category != ''">and a.category = #{category}</if>
+        <!-- 分类名称 -->
+        <if test="categoryName != null and categoryName != ''">and a.category_name = #{categoryName}</if>
+        <!-- 字典值 -->
+        <if test="codeValue != null and codeValue != ''">and a.code_value = #{codeValue}</if>
+        <!-- 描述 -->
+        <if test="codeText != null and codeText != ''">and a.code_text = #{codeText}</if>
+        <!-- 状态(0：启用；1：停用) -->
+        <if test="status != null">and a.status = #{status}</if>
+        <!-- 排序号 -->
+        <if test="orderNum != null and orderNum != ''">and a.order_num = #{orderNum}</if>
+    </sql>
+
+</mapper>
