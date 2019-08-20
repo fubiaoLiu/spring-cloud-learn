@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
-//@SpringBootTest
 public class DemoServiceTest {
 
     @InjectMocks
@@ -45,7 +44,7 @@ public class DemoServiceTest {
         List<Dictionary> list = demoService.getDictOptionByName("评估模型");
         Assert.assertSame(1L, list.get(0).getId());
         Assert.assertSame(2L, list.get(1).getId());
-        Assert.assertSame(2, list.size());
+        Assert.assertSame("列表记录数错误", 2, list.size());
     }
 
 }

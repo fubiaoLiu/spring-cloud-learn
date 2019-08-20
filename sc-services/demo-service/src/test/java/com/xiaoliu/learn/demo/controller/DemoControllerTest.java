@@ -24,17 +24,14 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Transactional
+/**
+ * @description: Controller层单元测试
+ * @author: FuBiaoLiu
+ * @date: 2019/8/20
+ */
 @RunWith(MockitoJUnitRunner.class)
-//@SpringBootTest
-//@WebAppConfiguration
-//@WebMvcTest(DemoController.class)
-//@AutoConfigureMockMvc
 public class DemoControllerTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(DemoControllerTest.class);
-    //    @Autowired
-    //    private WebApplicationContext wac;
-//    @Autowired
     private MockMvc mockMvc;
     @Mock
     private DemoService demoService;
@@ -43,7 +40,8 @@ public class DemoControllerTest {
 
     @Before
     public void setUp() throws Exception {
-//        mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
+        // 构造MockMvc
+        mockMvc = MockMvcBuilders.standaloneSetup(demoController).build();
         // -------------------------------
 
         // 准备桩数据
@@ -59,9 +57,6 @@ public class DemoControllerTest {
 
         Mockito.when(demoService.getDictOptionByName("评估模型"))
                 .thenReturn(entryList);
-        // -------------------------------
-        // 构造MockMvc
-        mockMvc = MockMvcBuilders.standaloneSetup(demoController).build();
     }
 
     @After
@@ -79,6 +74,7 @@ public class DemoControllerTest {
                 .andReturn().getResponse().getContentAsString();*/
         mockMvc.perform(MockMvcRequestBuilders.post("/demo/getDictOptionByName")
                 .param("name", "评估模型")
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .accept(MediaType.APPLICATION_JSON_UTF8))
 //                .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
