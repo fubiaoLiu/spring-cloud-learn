@@ -1,0 +1,38 @@
+spring:
+  # 应用名
+  application:
+    name: kafka-consumer-service
+  # 环境切换
+  profiles:
+    active: dev
+
+# 日志配置
+logging:
+  config: classpath:log4j2.yml
+
+---
+# 开发环境
+server:
+  port: 7008
+  max-http-header-size: 40960
+spring:
+  profiles: dev
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    consumer:
+      # Kafka中没有初始偏移或如果当前偏移在服务器上不再存在时，默认取最新，有三个选项 【latest, earliest, none】
+      auto-offset-reset: earliest
+      # 是否开启自动提交
+      enable-auto-commit: false
+      # 自动提交的时间间隔，如果'enable.auto.commit'为true，则消费者偏移自动提交给Kafka的频率（以毫秒为单位），默认值为5000。
+      # auto-commit-interval: 100
+      # 指定key的反序列化方式
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      # 指定value的反序列化方式
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      # 指定默认消费者group id --> 由于在kafka中，同一组中的consumer不会读取到同一个消息，依靠groud.id设置组名
+      group-id: ${KAFKA_GROUP_ID:xiaoliu-consumer-group}
+
+# 控制swagger-ui的显示隐藏：true->显示，false->隐藏
+swagger:
+  show: true

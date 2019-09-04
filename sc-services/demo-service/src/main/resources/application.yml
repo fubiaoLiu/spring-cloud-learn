@@ -17,7 +17,7 @@ logging:
 ---
 # 开发环境
 server:
-  port: 7002
+  port: 7004
   max-http-header-size: 40960
 spring:
   profiles: dev
@@ -42,7 +42,7 @@ mybatis:
 ---
 # 测试环境
 server:
-  port: 7002
+  port: 7004
   max-http-header-size: 40960
 spring:
   profiles: test

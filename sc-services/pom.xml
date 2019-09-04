@@ -19,10 +19,12 @@
 
     <modules>
         <module>chart-service</module>
-        <module>producer-service</module>
-        <module>consumer-service</module>
+        <module>rocketmq-producer-service</module>
+        <module>rocketmq-consumer-service</module>
+        <module>kafka-consumer-service</module>
+        <module>kafka-producer-service</module>
         <module>sentinel-service</module>
-        <module>client-service</module>
+        <module>config-client-service</module>
         <module>demo-service</module>
     </modules>
 

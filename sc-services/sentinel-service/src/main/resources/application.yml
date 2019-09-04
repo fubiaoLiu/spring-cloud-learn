@@ -47,7 +47,7 @@ logging:
 ---
 # 开发环境
 server:
-  port: 7003
+  port: 7005
   max-http-header-size: 40960
 spring:
   profiles: dev
@@ -76,7 +76,7 @@ swagger:
 ---
 # 测试环境
 server:
-  port: 7003
+  port: 7005
   max-http-header-size: 40960
 spring:
   profiles: test
