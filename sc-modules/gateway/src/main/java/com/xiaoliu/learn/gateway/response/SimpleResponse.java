@@ -1,19 +1,21 @@
 package com.xiaoliu.learn.gateway.response;
 
 import com.xiaoliu.common.enums.StatusCodeEnum;
+import lombok.Data;
 
 /**
- * @author leyangjie
- * @date 2018/11/29 10:42
- * 返回数据包装类
+ * @description: 返回数据包装类
+ * @author: FuBiaoLiu
+ * @date: 2018/11/27
  */
+@Data
 public class SimpleResponse {
 
     private Integer statusCode;
 
     private String message;
 
-    private String access_token;
+    private String accessToken;
     /**
      * 返回内容
      */
@@ -27,53 +29,20 @@ public class SimpleResponse {
     }
 
 
-    public SimpleResponse(Object data, String access_token) {
+    public SimpleResponse(Object data, String accessToken) {
         this.data = data;
         this.setStatusCode(StatusCodeEnum.REFRESH_TOKEN.getKey());
         this.setMessage(StatusCodeEnum.REFRESH_TOKEN.getValue());
-        this.access_token = access_token;
+        this.accessToken = accessToken;
     }
 
-    public static SimpleResponse resultAccessToken(Object data, String access_token) {
+    public static SimpleResponse resultAccessToken(Object data, String accessToken) {
         SimpleResponse response = new SimpleResponse();
         response.setData(data);
         response.setStatusCode(StatusCodeEnum.REFRESH_TOKEN.getKey());
         response.setMessage(StatusCodeEnum.REFRESH_TOKEN.getValue());
-        response.setAccess_token(access_token);
+        response.setAccessToken(accessToken);
         return response;
     }
-
-    public Integer getStatusCode() {
-        return statusCode;
-    }
-
-    public void setStatusCode(Integer statusCode) {
-        this.statusCode = statusCode;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public Object getData() {
-        return data;
-    }
-
-    public void setData(Object data) {
-        this.data = data;
-    }
-
-    public String getAccess_token() {
-        return access_token;
-    }
-
-    public void setAccess_token(String access_token) {
-        this.access_token = access_token;
-    }
-
 
 }

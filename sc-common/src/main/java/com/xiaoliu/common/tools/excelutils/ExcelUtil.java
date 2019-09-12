@@ -1,4 +1,4 @@
-package com.xiaoliu.common.tools.ExcelUils;
+package com.xiaoliu.common.tools.excelutils;
 
 import com.alibaba.excel.ExcelReader;
 import com.alibaba.excel.ExcelWriter;
@@ -15,9 +15,9 @@ import java.io.OutputStream;
 import java.util.List;
 
 /**
- * @Description 工具类
- * @Author xiaoli.cheng
- * @Date 9:49 2019/1/17
+ * @description: 工具类
+ * @author: FuBiaoLiu
+ * @date: 2018/9/12
  */
 public class ExcelUtil {
     /**
@@ -103,10 +103,10 @@ public class ExcelUtil {
     /**
      * 导出 Excel
      *
-     * @param response  HttpServletResponse
-     * @param list      数据 list，每个元素为一个 BaseRowModel
-     * @param fileName  导出的文件名
-     * @param object    映射实体类，Excel 模型
+     * @param response HttpServletResponse
+     * @param list     数据 list，每个元素为一个 BaseRowModel
+     * @param fileName 导出的文件名
+     * @param object   映射实体类，Excel 模型
      */
     public static void writeExcel(HttpServletResponse response, List<? extends BaseRowModel> list,
                                   String fileName, BaseRowModel object) {

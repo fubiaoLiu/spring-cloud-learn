@@ -11,9 +11,9 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author leyangjie
- * @date 2018/11/26 14:49
- * 操作redis 工具类
+ * @description: 操作 redis 工具类
+ * @author: FuBiaoLiu
+ * @date: 2019/9/12
  */
 @Component
 public class RedisUtils {

@@ -1,4 +1,4 @@
-package com.xiaoliu.common.tools.ExcelUils;
+package com.xiaoliu.common.tools.excelutils;
 
 import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.metadata.BaseRowModel;
@@ -10,9 +10,9 @@ import java.io.OutputStream;
 import java.util.List;
 
 /**
- * @Description
- * @Author xiaoli.cheng
- * @Date 9:50 2019/1/17
+ * @description:
+ * @author: FuBiaoLiu
+ * @date: 2018/9/12
  */
 public class ExcelWriterFactory extends ExcelWriter {
     private OutputStream outputStream;

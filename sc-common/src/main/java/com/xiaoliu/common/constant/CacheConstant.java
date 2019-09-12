@@ -1,10 +1,9 @@
 package com.xiaoliu.common.constant;
 
 /**
- * @description:
- * @author: yk.tan
- * @since: 2017/6/7
- * @history:
+ * @description: 缓存常量
+ * @author: FuBiaoLiu
+ * @date: 2019/9/12
  */
 public class CacheConstant {
 

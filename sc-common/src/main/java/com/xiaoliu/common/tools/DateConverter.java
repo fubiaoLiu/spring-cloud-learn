@@ -1,21 +1,23 @@
 package com.xiaoliu.common.tools;
 
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.util.StringUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * @description:
- * @author: Zeng
- * @date: 2018/4/23
+ * @description: 日期转换器
+ * @author: FuBiaoLiu
+ * @date: 2019/9/12
  */
-public class DateConverter implements Converter<String,Date> {
+public class DateConverter implements Converter<String, Date> {
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
     @Override
     public Date convert(String s) {
-        if ("".equals(s) || s == null) {
+        if (StringUtils.isEmpty(s)) {
             return null;
         }
         try {
@@ -28,7 +30,7 @@ public class DateConverter implements Converter<String,Date> {
 
 
     public static Date converts(String s) {
-        if ("".equals(s) || s == null) {
+        if (StringUtils.isEmpty(s)) {
             return null;
         }
         try {
@@ -41,7 +43,7 @@ public class DateConverter implements Converter<String,Date> {
     }
 
     public static Date convertFor(String s) {
-        if ("".equals(s) || s == null) {
+        if (StringUtils.isEmpty(s)) {
             return null;
         }
         try {

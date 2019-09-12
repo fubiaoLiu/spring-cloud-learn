@@ -29,7 +29,7 @@ public class Swagger2 {
                 .enable(swaggerShow)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.xiaoliu.learn.chartservice.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.xiaoliu.learn.rocketmq.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }

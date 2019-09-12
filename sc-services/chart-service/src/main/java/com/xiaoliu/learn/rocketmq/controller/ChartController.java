@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @author leyangjie
- * @date 2019/1/16 10:17
- * @Description：图标Controller
+ * @description: 图表管理
+ * @author: FuBiaoLiu
+ * @date: 2018/12/12
  */
 @RestController
 @RequestMapping("/chart")

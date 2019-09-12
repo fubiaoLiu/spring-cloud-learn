@@ -7,6 +7,11 @@ import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * @description: HelloController
+ * @author: FuBiaoLiu
+ * @date: 2019/9/12
+ */
 @RefreshScope
 @RestController
 public class HelloController {

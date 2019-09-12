@@ -5,9 +5,9 @@ import org.apache.log4j.Logger;
 import java.util.Random;
 
 /**
- * @Description :NumberUtil工具类
- * @Author xiaoli.cheng
- * @Date 11:47 2018/12/19
+ * @description: NumberUtil工具类
+ * @author: FuBiaoLiu
+ * @date: 2019/9/12
  */
 public final class NumberUtil {
     private final static Logger logger = Logger.getLogger(NumberUtil.class);
@@ -17,6 +17,7 @@ public final class NumberUtil {
 
     /**
      * 获取length位随机数字字母组合
+     *
      * @param length
      * @return
      */

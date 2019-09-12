@@ -1,8 +1,7 @@
 package com.xiaoliu.common.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Transient;
@@ -13,8 +12,7 @@ import java.util.Date;
  * @author: FubiaoLiu
  * @date: 2019/3/28
  */
-@Getter
-@Setter
+@Data
 public class User {
     @Transient
     private Long id;

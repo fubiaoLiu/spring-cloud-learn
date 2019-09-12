@@ -12,9 +12,9 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * Swagger2配置类
- * <p>
- * Created by Zeng on 2018/4/26.
+ * @description: Swagger2配置类
+ * @author: FuBiaoLiu
+ * @date: 2019/9/12
  */
 @Configuration
 @EnableSwagger2
@@ -29,7 +29,7 @@ public class Swagger2 {
                 .enable(swaggerShow)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.xiaoliu.learn.clientservice.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.xiaoliu.learn.bus.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }

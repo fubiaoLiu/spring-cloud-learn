@@ -4,7 +4,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
 import org.springframework.cloud.openfeign.EnableFeignClients;
@@ -19,7 +18,6 @@ import org.springframework.context.annotation.Primary;
  * @date: 2018/11/28
  */
 @EnableZuulProxy
-@EnableEurekaClient
 @SpringBootApplication
 @EnableFeignClients
 @ComponentScans({

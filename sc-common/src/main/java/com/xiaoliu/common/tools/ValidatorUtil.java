@@ -5,9 +5,8 @@ import java.util.regex.Pattern;
 
 /**
  * @description: 校验
- * @author: yk.tan
+ * @author: FuBiaoLiu
  * @date: 2018/5/2
- * @history:
  */
 public class ValidatorUtil {
 

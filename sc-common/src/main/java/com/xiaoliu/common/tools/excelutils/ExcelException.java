@@ -1,9 +1,9 @@
-package com.xiaoliu.common.tools.ExcelUils;
+package com.xiaoliu.common.tools.excelutils;
 
 /**
- * @Description: Excel 解析 Exception
- * @Author xiaoli.cheng
- * @Date 9:53 2019/1/17
+ * @description: Excel 解析 Exception
+ * @author: FuBiaoLiu
+ * @date: 2018/9/12
  */
 public class ExcelException extends RuntimeException {
     public ExcelException(String message) {
