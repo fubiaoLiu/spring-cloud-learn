@@ -1,7 +1,7 @@
 spring:
   # 应用名
   application:
-    name: demo-service
+    name: unit-test-service
   # 环境切换
   profiles:
     active: dev

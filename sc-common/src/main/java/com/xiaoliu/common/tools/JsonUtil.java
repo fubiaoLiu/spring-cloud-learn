@@ -2,7 +2,6 @@ package com.xiaoliu.common.tools;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
-import org.apache.log4j.Logger;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -15,7 +14,6 @@ import java.util.TreeMap;
  * @date: 2019/9/12
  */
 public final class JsonUtil {
-    private final static Logger logger = Logger.getLogger(JsonUtil.class);
 
     private JsonUtil() {
     }

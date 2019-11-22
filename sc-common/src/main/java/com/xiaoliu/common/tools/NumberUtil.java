@@ -1,7 +1,5 @@
 package com.xiaoliu.common.tools;
 
-import org.apache.log4j.Logger;
-
 import java.util.Random;
 
 /**
@@ -10,7 +8,6 @@ import java.util.Random;
  * @date: 2019/9/12
  */
 public final class NumberUtil {
-    private final static Logger logger = Logger.getLogger(NumberUtil.class);
 
     private NumberUtil() {
     }

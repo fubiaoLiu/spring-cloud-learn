@@ -11,7 +11,7 @@ Configuration:
     ## 生产：-Dlog.level.console=warn
     Property:
       - name: project.name
-        value: sentinel-service
+        value: eureka-server
         # 日志包名
       - name: package.name
         value: com.xiaoliu

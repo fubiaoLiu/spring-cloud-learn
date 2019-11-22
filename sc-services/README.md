@@ -6,7 +6,7 @@
 
 - rocketmq-consumer-service: RocketMQ消费者服务 | 7003
 
-- demo-service: 单元测试Demo服务 | 7004
+- unit-test-service: 单元测试Demo服务 | 7004
 
 - sentinel-service: 哨兵服务 | 7005
 

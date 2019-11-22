@@ -1,97 +1,36 @@
+server:
+  port: 7001
+  max-http-header-size: 40960
 spring:
-# 应用名
+  # 应用名
   application:
     name: chart-service
-# 环境切换
+  # 环境切换
   profiles:
     active: dev
-# 连接池配置
   datasource:
-    druid:
-      driver-class-name: com.mysql.jdbc.Driver
-      # 初始化时建立物理连接的个数
-      initialSize: 3
-      # 最小连接池数量
-      minIdle: 3
-      # 最大连接池数量
-      maxActive: 20
-      # 获取连接等待超时的时间
-      maxWait: 60000
-      # 连接保持空闲而不被驱逐的最小时间
-      minEvictableIdleTimeMillis: 300000
-      # 用来检测连接是否有效的sql，要求是一个查询语句
-      validationQuery: SELECT 1
-      # 申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。
-      testWhileIdle: true
-      # 配置监控统计拦截的filters，去掉后监控界面sql无法统计。监控统计用的filter:stat; 日志用的filter:log4j; 防御sql注入的filter:wall
-      filters: stat,wall,log4j2
-      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
-      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=3000
-      # 合并多个DruidDataSource的监控数据
-      useGlobalDataSourceStat: true
-      # 排除一些静态资源，以提高效率
-      web-stat-filter.exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
-      # druid连接池监控用户名/密码
-      stat-view-servlet:
-        login-username: admin
-        login-password: 123456
+    name: mysqlDataSource
+#    url: jdbc:mysql://192.168.101.1:3308/learn_dev?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8
+#    username: dev
+#    password: 123456
+    url: jdbc:mysql://${MYSQL_HOST:192.168.101.217}:${MYSQL_PORT:3308}/${MYSQL_DATABASE_NAME:hweduf_dev}?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8
+    username: ${MYSQL_USERNAME:dev}
+    password: ${MYSQL_PASSWORD:x1skrFBxdtFl3p4G}
+    driver-class-name: com.mysql.jdbc.Driver
 
 # 日志配置
 logging:
   config: classpath:log4j2.yml
 
-# spring security 基础认证关闭
-#security:
-#  basic:
-#    enabled: false
----
-# 开发环境
-server:
-  port: 7001
-  max-http-header-size: 40960
-spring:
-  profiles: dev
-  datasource:
-      name: mysqlDataSource
-      url: jdbc:mysql://192.168.101.1:3308/learn_dev?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8
-      username: dev
-      password: 123456
-      driver-class-name: com.mysql.jdbc.Driver
- #配置注册中心
+# 配置注册中心
 eureka:
   client:
     serviceUrl:
       defaultZone: http://xiaoliu:admin@localhost:8606/eureka/
-#mybatis的配置
+# Mybatis的配置
 mybatis:
   mapper-locations: classpath:mapper/*.xml
 
 # 控制swagger-ui的显示隐藏：true->显示，false->隐藏
 swagger:
- show: true
----
-# 测试环境
-server:
-  port: 7001
-  max-http-header-size: 40960
-spring:
-  profiles: test
-  datasource:
-      name: mysqlDataSource
-      url: jdbc:mysql://192.168.101.1:3306/learn_test?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8
-      username: test
-      password: 123456
-      driver-class-name: com.mysql.jdbc.Driver
-
-     #配置注册中心
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://xiaoliu:admin@localhost:8606/eureka/
-#mybatis的配置
-mybatis:
-  mapper-locations: classpath:mapper/*.xml
-
-# 控制swagger-ui的显示隐藏：true->显示，false->隐藏
-swagger:
- show: true
+  show: true

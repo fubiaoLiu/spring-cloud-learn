@@ -1,4 +1,3 @@
-
 spring:
   profiles:  # 环境切换
     active: dev
@@ -6,16 +5,12 @@ spring:
     name: eureka-server
   security:
     user:
-       name: xiaoliu
-       password: admin
+      name: xiaoliu
+      password: admin
 
-
-# 日志级别
+# 日志配置
 logging:
-  path: /var/log/spring-cloud-learn
-  file: ${spring.application.name}.log
-  level:
-    ROOT: info
+  config: classpath:log4j2.yml
 
 ---
 
@@ -28,14 +23,14 @@ eureka:
   instance:
     hostname: localhost
   server:
-    ## 清理时间间隔，单位毫秒，默认是60*1000）
+    # 清理时间间隔，单位毫秒，默认是60*1000）
     evictionIntervalTimerInMs: 30000
   client:
-    ## 是否将自己注册到Eureka Server，默认为true。由于当前这个应用就是Eureka Server，故而设为false
-    # registerWithEureka: false
-    ## 是否从Eureka Server获取注册信息，默认为true。因为这是一个单点的Eureka Server，不需要同步其他的Eureka Server节点的数据，故而设为false
-    # fetchRegistry: false
-    ## 与Eureka Server交互的地址，查询服务和注册服务都需要依赖这个地址。默认是http://localhost:8761/eureka ；多个地址可使用 , 分隔。
+    # 是否将自己注册到Eureka Server，默认为true。由于当前这个应用就是Eureka Server，故而设为false
+    registerWithEureka: false
+    # 是否从Eureka Server获取注册信息，默认为true。因为这是一个单点的Eureka Server，不需要同步其他的Eureka Server节点的数据，故而设为false
+    fetchRegistry: false
+    # 与Eureka Server交互的地址，查询服务和注册服务都需要依赖这个地址。默认是http://localhost:8761/eureka ；多个地址可使用 , 分隔。
     serviceUrl:
       defaultZone: http://xiaoliu:admin@${eureka.instance.hostname}:${server.port}/eureka/
 

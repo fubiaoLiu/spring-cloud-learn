@@ -1,8 +1,8 @@
 spring:
-# 应用名
+  # 应用名
   application:
-    name: client-service
-# 环境切换
+    name: config-client-service
+  # 环境切换
   profiles:
     active: dev
 #management:

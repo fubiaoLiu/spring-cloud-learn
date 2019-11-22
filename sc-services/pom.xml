@@ -25,7 +25,7 @@
         <module>kafka-producer-service</module>
         <module>sentinel-service</module>
         <module>config-client-service</module>
-        <module>demo-service</module>
+        <module>unit-test-service</module>
     </modules>
 
     <properties>

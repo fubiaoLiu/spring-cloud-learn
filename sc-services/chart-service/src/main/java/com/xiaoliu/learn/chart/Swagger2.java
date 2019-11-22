@@ -1,4 +1,4 @@
-package com.xiaoliu.learn.rocketmq;
+package com.xiaoliu.learn.chart;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

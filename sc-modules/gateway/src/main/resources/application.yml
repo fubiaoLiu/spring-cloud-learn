@@ -1,15 +1,14 @@
-
 spring:
   profiles:  # 环境切换
     active: dev
   application:
     name: api-gateway
-# 日志级别
+
+# 日志配置
 logging:
-  path: /var/log/spring-cloud-learn
-  file: ${spring.application.name}.log
+  config: classpath:log4j2.yml
   level:
-    ROOT: debug
+    root: warn
 zuul:
   sensitive-headers:
   strip-prefix: true
@@ -54,10 +53,20 @@ zuul:
   routes:
     chart-service:
       path: /chart/**
-    producer-service:
-      path: /producer/**
-    consumer-service:
-      path: /consumer/**
+    config-client-service:
+      path: /config/**
+    kafka-producer-service:
+      path: /kafka/producer/**
+    kafka-consumer-service:
+      path: /kafka/consumer/**
+    rocketmq-producer-service:
+      path: /rocketmq/producer/**
+    rocketmq-consumer-service:
+      path: /rocketmq/consumer/**
+    sentinel-service:
+      path: /sentinel/**
+    unit-test-service:
+      path: /ut/**
   # 取消重试机制
   retryable: false
   add-host-header: true
@@ -68,7 +77,7 @@ logging:
 
 # swagger 配置
 swagger:
- show: true
+  show: true
 
 
 ---
@@ -93,4 +102,4 @@ zuul:
   add-host-header: true
 # swagger 配置
 swagger:
- show: true
+  show: true
