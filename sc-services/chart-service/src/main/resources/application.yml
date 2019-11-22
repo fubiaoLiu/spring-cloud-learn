@@ -5,17 +5,11 @@ spring:
   # 应用名
   application:
     name: chart-service
-  # 环境切换
-  profiles:
-    active: dev
   datasource:
     name: mysqlDataSource
-#    url: jdbc:mysql://192.168.101.1:3308/learn_dev?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8
-#    username: dev
-#    password: 123456
-    url: jdbc:mysql://${MYSQL_HOST:192.168.101.217}:${MYSQL_PORT:3308}/${MYSQL_DATABASE_NAME:hweduf_dev}?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8
+    url: jdbc:mysql://${MYSQL_HOST:127.0.0.1}:${MYSQL_PORT:3306}/${MYSQL_DATABASE_NAME:learn_dev}?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8
     username: ${MYSQL_USERNAME:dev}
-    password: ${MYSQL_PASSWORD:x1skrFBxdtFl3p4G}
+    password: ${MYSQL_PASSWORD:123456}
     driver-class-name: com.mysql.jdbc.Driver
 
 # 日志配置
