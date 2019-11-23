@@ -1,55 +1,20 @@
-spring:
-  profiles:  # 环境切换
-    active: dev
-  application:
-    name: api-gateway
-
-# 日志配置
-logging:
-  config: classpath:log4j2.yml
-  level:
-    root: warn
-zuul:
-  sensitive-headers:
-  strip-prefix: true
-  host:
-    socket-timeout-millis: 60000
-    connect-timeout-millis: 60000
-
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 60000
-
-ribbon:
-  ReadTimeout: 60000
-  ConnectTimeout: 60000
-  eureka:
-    enabled: true
-
-#  servlet-path: /
-#security:
-#  basic:
-#    enabled: false
-#  oauth2:
-#    resource:
-#      prefer-token-info: false
-
----
-# 开发环境
-spring:
-  profiles: dev
 server:
   port: 8605
+spring:
+  application:
+    name: api-gateway
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://xiaoliu:admin@localhost:8406/eureka/
-
+      defaultZone: http://xiaoliu:admin@localhost:8606/eureka/
 zuul:
+  # 禁止服务名路由
+  ignored-services: "*"
+  # 路由前缀
+  prefix: /api
+  # 路由后是否跳过前缀，默认就是true，表示路由后的地址不包含前缀
+  strip-prefix: true
+  # 配置路由
   routes:
     chart-service:
       path: /chart/**
@@ -67,39 +32,52 @@ zuul:
       path: /sentinel/**
     unit-test-service:
       path: /ut/**
+    consumer-service:
+      path: /consumer/**
+    provider-service:
+      path: /provider/**
   # 取消重试机制
   retryable: false
   add-host-header: true
+  sensitive-headers:
+  host:
+    socket-timeout-millis: 60000
+    connect-timeout-millis: 60000
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 1000
+
+# 暴露actuator的所有端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
+  eureka:
+    enabled: true
+
+# 日志配置
 logging:
-  path: /var/log/sc-modules
-  file: ${spring.application.name}.log
-  level: debug
+  config: classpath:log4j2.yml
+  level:
+    root: warn
 
 # swagger 配置
 swagger:
   show: true
-
-
----
-
-# 测试环境
-spring:
-  profiles: test
-server:
-  port: 8605
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://xiaoliu:admin@127.0.0.1:8606/eureka/
-zuul:
-  routes:
-    chart-service:
-      path: /chart/**
-    rocketmq-service:
-      path: /rocketmq/**
-  # 取消重试机制
-  retryable: false
-  add-host-header: true
-# swagger 配置
-swagger:
-  show: true
+#  servlet-path: /
+#security:
+#  basic:
+#    enabled: false
+#  oauth2:
+#    resource:
+#      prefer-token-info: false
