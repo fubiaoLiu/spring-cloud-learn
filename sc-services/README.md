@@ -16,6 +16,15 @@
 
 - kafka-consumer-service: Kafka消费者服务 | 7008
 
+- provider-service1: 服务提供方1 | 7009
+
+- provider-service2: 服务提供方2 | 7010
+
+- consumer-service: 服务消费方 | 7011
+```$xslt
+使用provider-service和consumer-service模拟服务间的调用、负载均衡、降级、超时、熔断、限流
+```
+
 
 
 

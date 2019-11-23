@@ -2,36 +2,37 @@ spring:
   # 应用名
   application:
     name: config-client-service
-  # 环境切换
-  profiles:
-    active: dev
-#management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include: bus-refresh
----
-# 开发环境
-server:
-  port: 7006
-  max-http-header-size: 40960
-spring:
-  profiles: dev
+  cloud:
+    config:
+      # 要读取的配置文件名，对应获取规则的{application}
+      # name: config-client-service
+      # 要读取的配置文件环境，对应获取规则的{profile}
+      profile: dev
+      # 要读取的配置文件的分支，对应获取规则的{label}
+      # label: master
+      # config-server的地址
+      # uri:
+      # 可以直接从配置中心获取配置再注册到注册中心，也可以先注册到注册中心再访问配置中心再获取配置
+      discovery:
+        enabled: true
+        # config-server服务名
+        service-id: config-server
+      fail-fast: true
+
+    bus:
+      trace:
+        enabled: true
   rabbitmq:
     host: localhost
     port: 5672
     username: springcloud
     password: 123456
-  cloud:
-    config:
-      profile: dev
-      discovery:
-        enabled: true
-        service-id: config-server
-      fail-fast: true
-    bus:
-      trace:
-        enabled: true
+
+# 端口也可以从配置中心获取
+server:
+  port: 7006
+  max-http-header-size: 40960
+
 #配置注册中心
 eureka:
   client:

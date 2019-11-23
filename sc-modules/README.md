@@ -6,6 +6,8 @@ gateway
 eureka-server
 ### 3. 配置中心server | 8607
 config-server
+### 4. 监控仪表盘 | 8608
+hystrix-dashboard
 
 
 

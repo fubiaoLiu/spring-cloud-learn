@@ -8,6 +8,7 @@
 - Eureka Server: 服务治理
 - Config Server： 配置中心
 - Zuul: 网关
+- hystrix-dashboard: 监控
 
 ###  sc-services
 #### 业务微服务:

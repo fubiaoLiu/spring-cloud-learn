@@ -1,0 +1,46 @@
+server:
+  port: 7011
+  max-http-header-size: 40960
+spring:
+  # 应用名
+  application:
+    name: consumer-service
+
+# 日志配置
+logging:
+  config: classpath:log4j2.yml
+
+# 配置注册中心
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://xiaoliu:admin@localhost:8606/eureka/
+  instance:
+    # 此实例注册到eureka服务端的唯一的实例ID
+    instance-id: consumer
+    # 是否显示IP地址
+    prefer-ip-address: true
+    # eureka客户需要多长时间发送心跳给eureka服务器，表明它仍然活着,默认为30 秒 (与下面配置的单位都是秒)
+    leaseRenewalIntervalInSeconds: 10
+    # Eureka服务器在接收到实例的最后一次发出的心跳后，需要等待多久才可以将此实例删除，默认为90秒
+    leaseExpirationDurationInSeconds: 30
+
+# 开启hystrix
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  command:
+    # default表示全局配置
+    default:
+      execution:
+        isolation:
+          thread:
+            # 配置hystrix的请求超时时间，默认值为1000毫秒
+            timeoutInMilliseconds: 1000
+      circuitBreaker:
+        # 跳闸数，默认20
+        requestVolumeThreshold: 5
+        # 时间窗口，默认5000毫秒。结合跳闸数，如果10秒内调用失败了5次，则打开断路器。
+        sleepWindowInMilliseconds: 10000
