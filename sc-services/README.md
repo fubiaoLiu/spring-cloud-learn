@@ -22,7 +22,7 @@
 
 - consumer-service: 服务消费方 | 7011
 ```$xslt
-使用provider-service和consumer-service模拟服务间的调用、负载均衡、降级、超时、熔断、限流
+使用provider-service和consumer-service模拟服务间的调用、负载均衡、降级、超时、熔断、限流以及链路追踪
 ```
 
 

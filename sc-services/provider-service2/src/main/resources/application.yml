@@ -5,6 +5,13 @@ spring:
   # 应用名
   application:
     name: provider-service
+  sleuth:
+    sampler:
+      # request的采样比例，默认是0.1，即百分之十
+      probability: 1.0
+  zipkin:
+    # 指定zipkin server的地址
+    base-url: http://localhost:9411
 
 # 日志配置
 logging:
