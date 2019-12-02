@@ -26,6 +26,7 @@
         <module>sentinel-service</module>
         <module>config-client-service</module>
         <module>unit-test-service</module>
+        <module>elasticsearch-service</module>
     </modules>
 
     <properties>

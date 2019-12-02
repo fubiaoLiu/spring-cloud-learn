@@ -25,6 +25,8 @@
 使用provider-service和consumer-service模拟服务间的调用、负载均衡、降级、超时、熔断、限流以及链路追踪
 ```
 
+- elasticsearch-service: elasticsearch服务 | 7012
+
 
 
 
