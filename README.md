@@ -6,7 +6,7 @@
 ###  sc-modules
 系统组件库，包含SpringCloud基础组件:
 - Eureka Server: 服务治理
-- Config Server： 配置中心
+- Config Server: 配置中心
 - Zuul: 网关
 - hystrix-dashboard: 监控
 
@@ -29,3 +29,6 @@ RocketMQ Consumer Demo
 
 直接使用Demo(同官方的入门演示案例类似)：com.xiaoliu.learn.rocketmq.controller.ConsumerController
 ```
+
+###  sc-e-shop
+网上商城项目模块
