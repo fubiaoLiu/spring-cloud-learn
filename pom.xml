@@ -6,6 +6,7 @@
 
     <groupId>com.xiaoliu</groupId>
     <artifactId>spring-cloud-learn</artifactId>
+    <packaging>pom</packaging>
     <version>1.0.0</version>
 
     <properties>
@@ -18,6 +19,7 @@
         <module>sc-common</module>
         <module>sc-modules</module>
         <module>sc-services</module>
+        <module>sharding-jdbc</module>
     </modules>
 
     <build>

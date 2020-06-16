@@ -1,6 +1,6 @@
 ## 业务微服务
 
-- chart-service: 图表微服务(空项目) | 7001
+- auth-service: 权限微服务(整合Shiro) | 7001
 
 - rocketmq-producer-service: RocketMQ生产者服务 | 7002
 
@@ -27,7 +27,7 @@
 
 - elasticsearch-service: elasticsearch服务 | 7012
 
-
+- sharding-jdbc-service: 集成sharding-jdbc服务 | 7013
 
 
 

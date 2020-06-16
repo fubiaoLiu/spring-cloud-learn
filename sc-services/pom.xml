@@ -18,7 +18,7 @@
     </parent>
 
     <modules>
-        <module>chart-service</module>
+        <module>auth-service</module>
         <module>rocketmq-producer-service</module>
         <module>rocketmq-consumer-service</module>
         <module>kafka-consumer-service</module>
@@ -27,6 +27,10 @@
         <module>config-client-service</module>
         <module>unit-test-service</module>
         <module>elasticsearch-service</module>
+        <module>consumer-service</module>
+        <module>provider-service1</module>
+        <module>provider-service2</module>
+        <module>sharding-jdbc-service</module>
     </modules>
 
     <properties>
