@@ -1,4 +1,4 @@
-package com.xiaoliu.common.tools;
+package com.xiaoliu.common.utils;
 
 import com.xiaoliu.common.constant.CacheConstant;
 import com.xiaoliu.common.constant.Constant;
@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  * @date: 2019/9/12
  */
 @Component
-public class RedisUtils {
+public class RedisUtil {
 
     /**
      * 默认过期时间

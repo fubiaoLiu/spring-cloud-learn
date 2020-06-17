@@ -1,4 +1,4 @@
-package com.xiaoliu.common.tools;
+package com.xiaoliu.common.utils;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.util.StringUtils;

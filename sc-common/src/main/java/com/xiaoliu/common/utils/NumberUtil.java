@@ -1,4 +1,4 @@
-package com.xiaoliu.common.tools;
+package com.xiaoliu.common.utils;
 
 import java.util.Random;
 

@@ -21,7 +21,7 @@ import org.springframework.context.annotation.Primary;
 @SpringBootApplication
 @EnableFeignClients
 @ComponentScans({
-        @ComponentScan("com.xiaoliu.common.tools")
+        @ComponentScan("com.xiaoliu.common.utils")
 })
 public class GatewayApplication {
     public static void main(String[] args) {

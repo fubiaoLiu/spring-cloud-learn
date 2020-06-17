@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--<context id="DataCenter" targetRuntime="MyBatis3">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/ds0"
+                        userId="root" password="root">
+            &lt;!&ndash; 针对oracle数据库 &ndash;&gt;
+            <property name="remarksReporting" value="true"></property>
+            &lt;!&ndash; 针对mysql数据库 &ndash;&gt;
+            <property name="useInformationSchema" value="true"></property>
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <javaModelGenerator targetPackage="com.xiaoliu.learn.entity" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <sqlMapGenerator targetPackage="com.xiaoliu.learn.mapper"
+                         targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.xiaoliu.learn.mapper"
+                             targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <table tableName="t_user0" domainObjectName="User">
+        </table>
+    </context>-->
+
+    <!-- MyBatis代码生成器 -->
+    <!-- 需要修改的地方是①②③④，然后执行批处理即可 -->
+
+    <!-- classPathEntry:数据库的JDBC驱动,①location换成你自己的mysql类库位置 -->
+    <!-- maven一般在C:\Users\Administrator\.m2\repository\mysql\mysql-connector-java\，也可以自己下载一个并指定 -->
+    <!-- <classPathEntry
+        location="E:\MyEclipse Professional 2014\.metadata\.me_tcat7\webapps\zkungfu\WEB-INF\lib\ojdbc6.jar" /> -->
+    <classPathEntry
+            location="D:\Repository\mysql\mysql-connector-java\5.1.42\mysql-connector-java-5.1.42.jar"/>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <!-- 去除自动生成的注释 -->
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!-- 数据库连接，②userId&password改成自己的配置，如果是oracle还需要修改目录下的tnsnames.ora -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/ds0?characterEncoding=utf8"
+                        userId="root" password="root">
+        </jdbcConnection>
+        <!-- <jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+            connectionURL="jdbc:oracle:thin:@localhost:1521:OrderTest"
+            userId="xxx" password="xxx">
+        </jdbcConnection>-->
+
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="true"/>
+            <!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
+        </javaTypeResolver>
+
+        <!-- targetProject:③修改自动生成代码的位置，包括DAO/entity/XML，一般生成在项目下面的src或者test -->
+        <!-- 生成vo对象 -->
+        <javaModelGenerator targetPackage="com.xiaoliu.learn.entity"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+            <!--
+                targetProject 生成的Java Bean放置在哪个项目的哪个目录下 targetPackage 生成的Java Bean的包名
+                一个有用的属性 <property name="trimStrings" value="true" /> 从数据库返回的值被清理前后的空格
+                <property name="enableSubPackages" value="false" /> 是否在包名后加上scheme名称
+            -->
+        </javaModelGenerator>
+        <!-- 生成用于查询的Example对象 -->
+        <sqlMapGenerator targetPackage="mapper"
+                         targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+            <!--
+               targetProject 生成的 SqlMap.xml 文件放置在哪个项目的哪个目录下 targetPackage 生成的
+               SqlMap.xml 文件的包名 <property name="enableSubPackages" value="false" />
+               是否在包名后加上scheme名称
+               -->
+        </sqlMapGenerator>
+
+        <!-- 生成DAO的类文件以及配置文件 -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.xiaoliu.learn.mapper"
+                             targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!-- tableName:④用于自动生成代码的数据库表；domainObjectName:对应于数据库表的javaBean类名 -->
+        <!-- <columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />//无论字段是什么类型，生成的类属性都是varchar。  -->
+        <table tableName="t_user0" domainObjectName="User"/>
+    </context>
+</generatorConfiguration>

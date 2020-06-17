@@ -1,4 +1,4 @@
-package com.xiaoliu.common.tools;
+package com.xiaoliu.common.utils;
 
 import com.xiaoliu.common.constant.Constant;
 import org.apache.commons.lang3.StringUtils;

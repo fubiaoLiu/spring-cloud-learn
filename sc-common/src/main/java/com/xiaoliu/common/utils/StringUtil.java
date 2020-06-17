@@ -1,4 +1,4 @@
-package com.xiaoliu.common.tools;
+package com.xiaoliu.common.utils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
  * @author: FuBiaoLiu
  * @date: 2019/9/4
  */
-public class StringUtils {
+public class StringUtil {
     /**
      * 把字符串中的空格、回车、换行符、制表符等都换成空格
      */

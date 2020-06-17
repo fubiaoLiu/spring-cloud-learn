@@ -3,8 +3,8 @@ package com.xiaoliu.learn.kafka.listener;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.xiaoliu.common.tools.JsonUtil;
-import com.xiaoliu.common.tools.StringUtils;
+import com.xiaoliu.common.utils.JsonUtil;
+import com.xiaoliu.common.utils.StringUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -28,16 +28,16 @@ public class ConsumerListener {
      */
     @KafkaListener(topics = {"dev_gp_tosql"})
     public void listenGPMessage(ConsumerRecord<?, String> record) {
-        if (record == null || StringUtils.isBlank(record.value())) {
+        if (record == null || StringUtil.isBlank(record.value())) {
             return;
         }
         JSONObject jsonObject = JSON.parseObject(record.value());
         String sql = JsonUtil.getString(jsonObject, "statement");
         String errorCode = JsonUtil.getString(jsonObject, "code");
-        if (StringUtils.isBlank(sql) || "10001".equals(errorCode)) {
+        if (StringUtil.isBlank(sql) || "10001".equals(errorCode)) {
             return;
         }
-        sql = StringUtils.replaceSpecialStrToBlank(sql);
+        sql = StringUtil.replaceSpecialStrToBlank(sql);
         log.info("SQL Message:{}", sql);
         writeAllToFile(record.value());
         writeSqlToFile(sql);
@@ -50,7 +50,7 @@ public class ConsumerListener {
      */
     // @KafkaListener(topics = {"xiaoliu-topic"})
     public void listenXiaoliuMessage(ConsumerRecord<?, String> record) {
-        if (record == null || StringUtils.isBlank(record.value())) {
+        if (record == null || StringUtil.isBlank(record.value())) {
             return;
         }
         System.out.println("Message:" + record.value());
