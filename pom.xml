@@ -19,7 +19,6 @@
         <module>sc-common</module>
         <module>sc-modules</module>
         <module>sc-services</module>
-        <module>sharding-jdbc</module>
     </modules>
 
     <build>

@@ -46,7 +46,7 @@ public class DataSourceConfig {
     @Bean
     public DataSource dataSource() throws SQLException, IOException {
         YamlShardingConfiguration config = parse();
-        ShardingRule rule = config.getShardingRule(Collections.<String, DataSource>emptyMap());
+        ShardingRule rule = config.getShardingRule(Collections.emptyMap());
         rule.getDataSourceMap().forEach((k, v) -> {
             DruidDataSource d = (DruidDataSource) v;
             d.setProxyFilters(Lists.newArrayList(statFilter));
