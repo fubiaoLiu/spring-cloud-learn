@@ -23,4 +23,9 @@ public class ProviderFeignFallBack implements ProviderClient {
     public String provider() {
         return "ProviderFeignFallBack: 系统繁忙，请稍后重试...";
     }
+
+    @Override
+    public String getById(Long id, String status) {
+        return "ProviderFeignFallBack: 系统繁忙，请稍后重试...";
+    }
 }

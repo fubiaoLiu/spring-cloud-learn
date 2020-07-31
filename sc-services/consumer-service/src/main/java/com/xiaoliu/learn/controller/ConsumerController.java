@@ -4,6 +4,7 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import com.xiaoliu.learn.client.ProviderClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -55,6 +56,14 @@ public class ConsumerController {
     public String feign() {
         System.out.println("调用方法：feign");
         String result = providerClient.provider();
+        System.out.println("rest:" + result);
+        return result;
+    }
+
+    @GetMapping("/{id}")
+    public String getById(@PathVariable("id") Long id) {
+        System.out.println("调用方法：getById");
+        String result = providerClient.getById(id, "0");
         System.out.println("rest:" + result);
         return result;
     }

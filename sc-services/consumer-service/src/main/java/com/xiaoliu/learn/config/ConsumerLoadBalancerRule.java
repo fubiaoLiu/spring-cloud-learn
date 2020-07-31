@@ -4,6 +4,7 @@ import com.netflix.client.config.IClientConfig;
 import com.netflix.loadbalancer.AbstractLoadBalancerRule;
 import com.netflix.loadbalancer.ILoadBalancer;
 import com.netflix.loadbalancer.Server;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -13,6 +14,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author: FuBiaoLiu
  * @date: 2019/11/22
  */
+@Slf4j
 public class ConsumerLoadBalancerRule extends AbstractLoadBalancerRule {
     private AtomicInteger nextServer = new AtomicInteger(0);
     private AtomicInteger callNum = new AtomicInteger(0);
@@ -22,11 +24,11 @@ public class ConsumerLoadBalancerRule extends AbstractLoadBalancerRule {
         if (lb == null) {
             return null;
         }
-        Server server = null;
+        Server server;
 
         int count = 0;
-        while (count <= MAX_RETRY_COUNT) {
-            System.out.println("ConsumerLoadBalancerRule");
+        while (count++ < MAX_RETRY_COUNT) {
+            log.info("ConsumerLoadBalancerRule");
             if (Thread.interrupted()) {
                 return null;
             }
@@ -46,29 +48,22 @@ public class ConsumerLoadBalancerRule extends AbstractLoadBalancerRule {
                     nextServer.set(0);
                 }
                 callNum.set(0);
-                count++;
                 Thread.yield();
                 continue;
             }
 
-            if (server.isAlive()) {
+            if (server.isAlive() && server.isReadyToServe()) {
                 if (callNum.incrementAndGet() >= 2) {
                     if (nextServer.incrementAndGet() >= serverCount) {
                         nextServer.set(0);
                     }
                     callNum.set(0);
                 }
-                return (server);
+                return server;
             }
-
-            // Shouldn't actually happen.. but must be transient or a bug.
-            count++;
-            server = null;
-            Thread.yield();
         }
-        System.out.println("No available alive servers after 10 tries from load balancer: " + lb);
-        return server;
-
+        log.warn("No available alive servers after {} tries from load balancer: {}", count, lb);
+        return null;
     }
 
     @Override
