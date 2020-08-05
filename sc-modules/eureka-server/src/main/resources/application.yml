@@ -26,7 +26,7 @@ eureka:
     # 关闭自我保护机制
     enable-self-preservation: false
     # 清理时间间隔，单位毫秒，默认是60*1000）
-    evictionIntervalTimerInMs: 30000
+    evictionIntervalTimerInMs: 3000
   client:
     # 是否将自己注册到Eureka Server，默认为true。由于当前这个应用就是Eureka Server，故而设为false
     registerWithEureka: false

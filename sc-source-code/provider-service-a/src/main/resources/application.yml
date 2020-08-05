@@ -1,0 +1,25 @@
+server:
+  port: 6001
+spring:
+  # 应用名
+  application:
+    name: provider-service-a
+
+# 日志配置
+logging:
+  config: classpath:log4j2.yml
+
+# 配置注册中心
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://xiaoliu:admin@localhost:8606/eureka/
+  instance:
+    # 此实例注册到eureka服务端的唯一的实例ID
+    instance-id: ${spring.application.name}
+    # 是否显示IP地址
+    prefer-ip-address: true
+    # eureka客户需要多长时间发送心跳给eureka服务器，表明它仍然活着,默认为30 秒 (与下面配置的单位都是秒)
+    leaseRenewalIntervalInSeconds: 1
+    # Eureka服务器在接收到实例的最后一次发出的心跳后，需要等待多久才可以将此实例删除，默认为90秒
+    leaseExpirationDurationInSeconds: 3

@@ -19,6 +19,7 @@
         <module>sc-common</module>
         <module>sc-modules</module>
         <module>sc-services</module>
+        <module>sc-source-code</module>
     </modules>
 
     <build>
