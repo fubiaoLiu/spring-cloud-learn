@@ -49,5 +49,9 @@ hystrix:
       circuitBreaker:
         # 跳闸数，默认20
         requestVolumeThreshold: 5
-        # 时间窗口，默认5000毫秒。结合跳闸数，如果10秒内调用失败了5次，则打开断路器。
-        sleepWindowInMilliseconds: 10000
+        # 睡眠时间窗口，默认5000毫秒。断路器打开5s后可以尝试请求测试服务是否恢复。
+        # sleepWindowInMilliseconds: 10000
+      # 统计时间窗口，默认10000毫秒。结合跳闸数，如果10秒内调用失败了20次，则打开断路器。
+      metrics:
+        rollingStats:
+          timeInMilliseconds: 10000

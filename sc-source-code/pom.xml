@@ -18,6 +18,9 @@
     </parent>
 
     <modules>
+        <module>provider-service-a-api</module>
+        <module>provider-service-a</module>
+        <module>customer-service-x</module>
     </modules>
 
     <properties>

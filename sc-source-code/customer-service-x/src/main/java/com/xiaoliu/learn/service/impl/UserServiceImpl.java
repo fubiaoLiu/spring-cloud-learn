@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService {
      * 请求合并时被合并的方法
      *
      * @param id ID
-     * @return 用户信息Future（返回的需要Future）
+     * @return 用户信息Future（返回的需要Future或Observable）
      */
     @HystrixCollapser(batchMethod = "getUsersByIds", collapserProperties = {@HystrixProperty(name = "timerDelayInMilliseconds", value = "3000")})
     @Override
