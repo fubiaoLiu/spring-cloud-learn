@@ -3,6 +3,10 @@ server:
 spring:
   application:
     name: api-gateway
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
 eureka:
   client:
     serviceUrl:
@@ -17,7 +21,7 @@ zuul:
   # 配置路由
   routes:
     chart-service:
-      path: /chart/**
+      path: /auth/**
     config-client-service:
       path: /config/**
     kafka-producer-service:
@@ -36,13 +40,17 @@ zuul:
       path: /consumer/**
     provider-service:
       path: /provider/**
-  # 取消重试机制
-  retryable: false
-  add-host-header: true
-  sensitive-headers:
-  host:
-    socket-timeout-millis: 60000
-    connect-timeout-millis: 60000
+    provider-service-a:
+      path: /provider-a/**
+    customer-service-x:
+      path: /customer-x/**
+  # 重试机制
+  retryable: true
+#  add-host-header: true
+#  sensitive-headers:
+#  host:
+#    socket-timeout-millis: 60000
+#    connect-timeout-millis: 60000
 
 hystrix:
   command:
@@ -50,20 +58,29 @@ hystrix:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 1000
+            timeoutInMilliseconds: 10000
 
 # 暴露actuator的所有端点
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
 
 ribbon:
-  ReadTimeout: 60000
-  ConnectTimeout: 60000
-  eureka:
-    enabled: true
+  # 连接的超时时间
+  ConnectTimeout: 1000
+  # 请求的超时时间
+  ReadTimeout: 1000
+  # 是否所有操作都支持重试
+  OkToRetryOnAllOperations: true
+  # 最大重试次数（表示第一次失败后可以重试的最大次数）
+  MaxAutoRetries: 1
+  # 最大重试的服务实例数（表示除第一个实例外，可以重试的最大实例数（n），结合MaxAutoRetries（m），最多会请求(n + 1) * (m + 1)次，
+  # 如果服务实例数小于n+1，则再次遍历服务列表）
+  MaxAutoRetriesNextServer: 1
+#  eureka:
+#    enabled: true
 
 # 日志配置
 logging:

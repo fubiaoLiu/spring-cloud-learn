@@ -16,6 +16,12 @@ public class ProviderController {
     @GetMapping("/provider")
     public String provider() {
         System.out.println("provider1");
+        /*try {
+            // 模拟超时
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }*/
         return "provider1";
     }
 

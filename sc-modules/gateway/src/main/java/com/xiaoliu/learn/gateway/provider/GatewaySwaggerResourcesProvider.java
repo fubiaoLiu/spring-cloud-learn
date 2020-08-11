@@ -26,7 +26,7 @@ public class GatewaySwaggerResourcesProvider implements SwaggerResourcesProvider
     @Override
     public List<SwaggerResource> get() {
         List<SwaggerResource> resources = new ArrayList<>();
-        resources.add(swaggerResource("图表微服务", "/chart/v2/api-docs"));
+        resources.add(swaggerResource("权限服务", "/auth/v2/api-docs"));
         return resources;
     }
 
