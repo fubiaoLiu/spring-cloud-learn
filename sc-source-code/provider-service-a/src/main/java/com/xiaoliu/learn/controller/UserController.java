@@ -1,8 +1,8 @@
 package com.xiaoliu.learn.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.xiaoliu.common.entity.User;
-import com.xiaoliu.common.service.UserServiceApi;
+import com.xiaoliu.learn.entity.User;
+import com.xiaoliu.learn.service.UserServiceApi;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
