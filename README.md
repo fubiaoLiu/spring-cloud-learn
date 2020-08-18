@@ -15,7 +15,7 @@
 - auth-service: 权限微服务(整合Shiro)
 
 - rocketmq-producer-service: RocketMQ 生产者服务
-```$xslt
+```$text
 RocketMQ Producer Demo
 配置类：com.xiaoliu.learn.rocketmq.config.ProducerConfiguration
 测试类：com.xiaoliu.learn.rocketmq.ProducerServiceApplicationTests
@@ -23,7 +23,7 @@ RocketMQ Producer Demo
 直接使用Demo(同官方的入门演示案例类似)：com.xiaoliu.learn.rocketmq.controller.ProducerController
 ```
 - rocketmq-consumer-service: RocketMQ 消费者服务
-```$xslt
+```$text
 RocketMQ Consumer Demo
 配置类：com.xiaoliu.learn.rocketmq.config.ConsumerConfiguration
 监听器：com.xiaoliu.learn.rocketmq.listener.ConsumeMsgListener
@@ -46,7 +46,7 @@ RocketMQ Consumer Demo
 - provider-service2: 服务提供方2
 
 - consumer-service: 服务消费方
-```$xslt
+```$text
 使用provider-service和consumer-service模拟服务间的调用、负载均衡、降级、超时、熔断、限流以及链路追踪
 ```
 
@@ -61,11 +61,16 @@ RocketMQ Consumer Demo
 - provider-service-a: 提供者服务A
 
 - customer-service-a: 消费者服务A
-```$xslt
+```$text
 使用provider-service-a、customer-service-a和eureka-server、gateway服务调试查看Eureka、Ribbon、Feign、Hystrix、Zuul源码
 ```
 
 - transaction-service: 事务服务
+
+- xa-transaction-service: XA分布式事务服务
+```text
+通过 JTA + Druid多数据源 + Atomikos 三者整合实现分布式事务的管理，底层就是2PC。
+```
 
 ###  sc-e-shop
 网上商城项目模块

@@ -1,0 +1,54 @@
+server:
+  port: 6004
+spring:
+  # 应用名
+  application:
+    name: xa-transaction-service
+  datasource:
+    test-db1:
+      type: com.alibaba.druid.pool.xa.DruidXADataSource
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/test-db-1?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false
+      username: root
+      password: root
+      driverClassName: com.mysql.jdbc.Driver
+      initialSize: 50
+      minIdle: 50
+      maxActive: 500
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      filters: stat,wall,log4j2
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+    test-db2:
+      type: com.alibaba.druid.pool.xa.DruidXADataSource
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/test-db-2?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false
+      username: root
+      password: root
+      driverClassName: com.mysql.jdbc.Driver
+      initialSize: 50
+      minIdle: 50
+      maxActive: 500
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      filters: stat,wall,log4j2
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+# 日志配置
+logging:
+  config: classpath:log4j2.yml
+
+jta:
+  log-dir: classpath:tx-logs
+  transaction-manager-id: txManager
