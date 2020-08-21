@@ -1,6 +1,6 @@
 Configuration:
   # log4j自身日志级别
-  status: Info
+  status: Debug
 
   # 日志级别：All < Trace < Debug < Info < Warn < Error < Fatal < OFF
 
@@ -17,7 +17,7 @@ Configuration:
         value: com.xiaoliu
         # 全局日志级别
       - name: log.level.console.all
-        value: INFO
+        value: DEBUG
         # 业务日志级别
       - name: log.level.console.bussiness
         value: DEBUG
