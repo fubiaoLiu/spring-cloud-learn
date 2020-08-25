@@ -23,6 +23,9 @@
         <module>customer-service-a</module>
         <module>transaction-service</module>
         <module>xa-transaction-service</module>
+        <module>tcc-transaction-service-a-api</module>
+        <module>tcc-transaction-service-a</module>
+        <module>tcc-transaction-service-b</module>
     </modules>
 
     <properties>
