@@ -44,6 +44,10 @@
             <artifactId>mongo-java-driver</artifactId>
             <groupId>org.mongodb</groupId>
         </exclusion>
+        <exclusion>
+            <artifactId>asm</artifactId>
+            <groupId>org.ow2.asm</groupId>
+        </exclusion>
     </exclusions>
 </dependency>
 ```

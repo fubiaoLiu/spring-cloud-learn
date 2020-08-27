@@ -26,6 +26,8 @@
         <module>tcc-transaction-service-a-api</module>
         <module>tcc-transaction-service-a</module>
         <module>tcc-transaction-service-b</module>
+        <module>tcc-transaction-service-c-api</module>
+        <module>tcc-transaction-service-c</module>
     </modules>
 
     <properties>

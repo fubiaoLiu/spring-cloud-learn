@@ -21,6 +21,10 @@
 - tcc-transaction-service-a: TCC分布式事务提供者服务A | 6005
 
 - tcc-transaction-service-b: TCC分布式事务消费者服务B | 6006
+
+- tcc-transaction-service-c-api: TCC分布式事务提供者服务C的API模块
+
+- tcc-transaction-service-c: TCC分布式事务提供者服务C`为了更好的演示confirm、cancel时程序的执行情况，增加服务C` | 6007
 ```text
 通过 bytetcc框架 实现TCC分布式事务
 ```

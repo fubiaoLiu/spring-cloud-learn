@@ -1,6 +1,6 @@
 Configuration:
   # log4j自身日志级别
-  status: warn
+  status: debug
 
   # 日志级别：All < Trace < Debug < Info < Warn < Error < Fatal < OFF
 

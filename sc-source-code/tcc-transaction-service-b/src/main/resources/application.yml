@@ -1,5 +1,5 @@
 server:
-  port: 6002
+  port: 6006
 spring:
   # 应用名
   application:
