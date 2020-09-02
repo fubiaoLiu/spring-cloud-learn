@@ -28,6 +28,8 @@
         <module>tcc-transaction-service-b</module>
         <module>tcc-transaction-service-c-api</module>
         <module>tcc-transaction-service-c</module>
+        <module>tcc-transaction-service-d-api</module>
+        <module>tcc-transaction-service-d</module>
     </modules>
 
     <properties>

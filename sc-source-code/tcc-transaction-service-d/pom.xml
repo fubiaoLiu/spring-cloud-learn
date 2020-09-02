@@ -3,9 +3,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.xiaoliu.spring-cloud-learn</groupId>
-    <artifactId>tcc-transaction-service-b</artifactId>
+    <artifactId>tcc-transaction-service-d</artifactId>
     <version>1.0.0</version>
-    <name>tcc-transaction-service-b</name>
+    <name>tcc-transaction-service-d</name>
     <description>Demo project for Spring Boot</description>
     <packaging>jar</packaging>
 
@@ -29,30 +29,12 @@
     <dependencies>
         <dependency>
             <groupId>com.xiaoliu.spring-cloud-learn</groupId>
-            <artifactId>tcc-transaction-service-a-api</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.xiaoliu.spring-cloud-learn</groupId>
-            <artifactId>tcc-transaction-service-c-api</artifactId>
-            <version>1.0.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.xiaoliu.spring-cloud-learn</groupId>
             <artifactId>tcc-transaction-service-d-api</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
         </dependency>
         <!--log4j2-->
         <dependency>
@@ -74,6 +56,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -95,12 +78,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.10</version>
-            <optional>true</optional>
-        </dependency>
+
         <!-- bytetcc -->
         <dependency>
             <groupId>org.bytesoft</groupId>
@@ -147,12 +125,19 @@
                     <artifactId>mongo-java-driver</artifactId>
                     <groupId>org.mongodb</groupId>
                 </exclusion>
-                <exclusion>
-                    <artifactId>asm</artifactId>
-                    <groupId>org.ow2.asm</groupId>
-                </exclusion>
             </exclusions>
         </dependency>
+        <!--<dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-dbcp2</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.2</version>
+        </dependency>-->
+
     </dependencies>
 
     <build>
@@ -160,6 +145,19 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
             </plugin>
         </plugins>
     </build>

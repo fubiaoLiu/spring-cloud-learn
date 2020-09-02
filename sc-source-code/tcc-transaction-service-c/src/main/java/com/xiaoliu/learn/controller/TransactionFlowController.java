@@ -30,6 +30,7 @@ public class TransactionFlowController implements TransactionFlowServiceApi, Com
     public void save(String fromAcctId, String toAcctId, double amount) {
         Long id = transactionFlowService.save(fromAcctId, toAcctId, amount);
         compensableContext.setVariable("transactionFlowId", id);
+//        throw new RuntimeException();
     }
 
     @Override
