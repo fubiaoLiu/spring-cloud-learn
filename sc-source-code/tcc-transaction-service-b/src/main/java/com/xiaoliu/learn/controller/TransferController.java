@@ -2,6 +2,7 @@ package com.xiaoliu.learn.controller;
 
 import com.xiaoliu.learn.client.ServiceAClient;
 import com.xiaoliu.learn.client.ServiceCClient;
+import com.xiaoliu.learn.client.ServiceDClient;
 import com.xiaoliu.learn.service.AccountService;
 import org.bytesoft.compensable.Compensable;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ public class TransferController implements TransferService {
     private ServiceAClient serviceAClient;
     @Autowired
     private ServiceCClient serviceCClient;
+    @Autowired
+    private ServiceDClient serviceDClient;
 
     @PutMapping("/in")
     @Override
@@ -36,6 +39,7 @@ public class TransferController implements TransferService {
         serviceAClient.transferOut(aAcctId, amount);
         accountService.tryTransferIn(bAcctId, amount);
         serviceCClient.save(aAcctId, bAcctId, amount);
+        serviceDClient.send("18888888888");
 //        throw new RuntimeException();
     }
 
@@ -46,5 +50,6 @@ public class TransferController implements TransferService {
         accountService.frozenAmount(bAcctId, amount);
         serviceAClient.transferIn(aAcctId, amount);
         serviceCClient.save(bAcctId, aAcctId, amount);
+        serviceDClient.send("18888888888");
     }
 }

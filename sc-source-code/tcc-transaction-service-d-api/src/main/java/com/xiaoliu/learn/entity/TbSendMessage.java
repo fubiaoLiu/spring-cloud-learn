@@ -14,5 +14,5 @@ public class TbSendMessage {
     private Long id;
     private String phone;
     private Integer status;
-    private Date create_time;
+    private Date createTime;
 }

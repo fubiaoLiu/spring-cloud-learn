@@ -31,5 +31,36 @@
 - tcc-transaction-service-d: TCC分布式事务提供者服务D`为了更好的演示confirm、cancel时程序的执行情况，增加服务D` | 6008
 ```text
 通过 bytetcc框架 实现TCC分布式事务
-```
 
+服务调用链：
+服务B     -> 服务A      -> 服务D
+服务B     -> 服务C
+服务B     -> 服务D
+```
+服务调用链：
+
+|  一级服务  |  二级服务  |  三级服务  |
+|  :----:  |  :----:  |  :----:  |
+|  服务B  |  服务A<br>服务C<br>服务D  |  服务D<br><br><br>  |
+
+<table>
+    <caption>服务调用链</caption>
+	<tr>
+	    <th>一级服务</th>
+	    <th>二级服务</th>
+	    <th>三级服务</th>  
+	</tr >
+	<tr >
+	    <td rowspan="3">服务B</td>
+	    <td>服务A</td>
+	    <td>服务D</td>
+	</tr>
+	<tr>
+	    <td>服务C</td>
+	    <td></td>
+	</tr>
+	<tr>
+	    <td>服务D</td>
+	    <td></td>
+	</tr>
+</table>

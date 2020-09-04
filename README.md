@@ -81,6 +81,10 @@ RocketMQ Consumer Demo
 - tcc-transaction-service-c-api: TCC分布式事务提供者服务C的API模块
 
 - tcc-transaction-service-c: TCC分布式事务提供者服务C`为了更好的演示confirm、cancel时程序的执行情况，增加服务C` | 6007
+
+- tcc-transaction-service-d-api: TCC分布式事务提供者服务D的API模块
+
+- tcc-transaction-service-d: TCC分布式事务提供者服务D`为了更好的演示confirm、cancel时程序的执行情况，增加服务D` | 6008
 ```text
 通过 bytetcc框架 实现TCC分布式事务
 ```

@@ -1,5 +1,6 @@
 package com.xiaoliu.learn.controller;
 
+import com.xiaoliu.learn.client.ServiceDClient;
 import com.xiaoliu.learn.service.AccountService;
 import com.xiaoliu.learn.service.AccountServiceApi;
 import org.bytesoft.compensable.Compensable;
@@ -21,16 +22,20 @@ public class AccountController implements AccountServiceApi {
 
     @Autowired
     private AccountService accountService;
+    @Autowired
+    private ServiceDClient serviceDClient;
 
     @Override
     @Transactional
     public void transferIn(String acctId, double amount) {
         accountService.tryTransferIn(acctId, amount);
+        serviceDClient.send("16666666666");
     }
 
     @Override
     @Transactional
     public void transferOut(String acctId, double amount) {
         accountService.frozenAmount(acctId, amount);
+        serviceDClient.send("16666666666");
     }
 }

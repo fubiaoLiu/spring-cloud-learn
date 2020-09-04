@@ -30,6 +30,7 @@
         <module>tcc-transaction-service-c</module>
         <module>tcc-transaction-service-d-api</module>
         <module>tcc-transaction-service-d</module>
+        <module>redisson-service</module>
     </modules>
 
     <properties>

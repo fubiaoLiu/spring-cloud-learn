@@ -3,6 +3,7 @@ package com.xiaoliu.learn;
 import org.bytesoft.bytetcc.supports.springcloud.config.SpringCloudSecondaryConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Import;
 
 /**
@@ -13,6 +14,7 @@ import org.springframework.context.annotation.Import;
  * @create: 2020/7/31 11:10
  **/
 @Import(SpringCloudSecondaryConfiguration.class)
+@EnableFeignClients
 @SpringBootApplication
 public class TCCServiceAApplication {
     public static void main(String[] args) {
