@@ -37,6 +37,7 @@ public class SendMessageController implements SendMessageServiceApi, Compensable
     public void confirmSend(String phone) {
         Long messageId = (Long) compensableContext.getVariable("messageId");
         sendMessageService.updateStatus(messageId, MessageStatus.SUCCESS);
+//        throw new RuntimeException();
     }
 
     @CompensableCancel

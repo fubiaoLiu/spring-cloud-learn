@@ -1,0 +1,9 @@
+server:
+  port: 6009
+spring:
+  # 应用名
+  application:
+    name: redisson-service
+# 日志配置
+logging:
+  config: classpath:log4j2.yml
