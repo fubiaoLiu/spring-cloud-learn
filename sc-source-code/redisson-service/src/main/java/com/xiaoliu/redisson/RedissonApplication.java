@@ -15,10 +15,17 @@ public class RedissonApplication {
     public static void main(String[] args) throws Exception {
         // singleServer();
         // clusterServerReentrantLock();
-        clusterServerFairLock();
+        // clusterServerFairLock();
+        // clusterServerMultiLock();
+        clusterServerRedLock();
     }
 
-    private static RedissonClient getRedissonClient() {
+    /**
+     * 获取集群环境的redisson客户端
+     *
+     * @return RedissonClient
+     */
+    private static RedissonClient getClusterRedissonClient() {
         // 1. Create config object
         Config config = new Config();
         config.useClusterServers()
@@ -40,15 +47,61 @@ public class RedissonApplication {
     }
 
     /**
+     * 获取本地单机环境的redisson客户端
+     *
+     * @return RedissonClient
+     */
+    private static RedissonClient getSingleRedissonClient() {
+        Config config = new Config();
+        config.useSingleServer().setAddress("redis://127.0.0.1:6379");
+        return Redisson.create(config);
+    }
+
+    /**
+     * 基于redis cluster集群的红锁
+     *
+     * @throws Exception
+     */
+    private static void clusterServerRedLock() throws Exception {
+        RedissonClient redisson = getClusterRedissonClient();
+        RLock lock1 = redisson.getLock("lock1");
+        RLock lock2 = redisson.getLock("lock2");
+        RLock lock3 = redisson.getLock("lock3");
+        RedissonRedLock redLock = new RedissonRedLock(lock1, lock2, lock3);
+
+        redLock.lock();
+        // Thread.sleep(3600000);
+        redLock.unlock();
+    }
+
+    /**
+     * 基于redis cluster集群的Multi锁
+     *
+     * @throws Exception
+     */
+    private static void clusterServerMultiLock() throws Exception {
+        RedissonClient redisson = getClusterRedissonClient();
+        RLock lock1 = redisson.getLock("lock1");
+        RLock lock2 = redisson.getLock("lock2");
+        RLock lock3 = redisson.getLock("lock3");
+        RLock multiLock = redisson.getMultiLock(lock1, lock2, lock3);
+
+        multiLock.lock();
+        // Thread.sleep(3600000);
+        multiLock.unlock();
+    }
+
+    /**
      * 基于redis cluster集群的公平锁
      *
      * @throws Exception
      */
     private static void clusterServerFairLock() throws Exception {
-        RedissonClient redisson = getRedissonClient();
-        RLock fairLock = redisson.getFairLock("anyLock");
+        RedissonClient redisson = getClusterRedissonClient();
+        RLock fairLock = redisson.getFairLock("myLock");
 
         fairLock.lock();
+        // fairLock.tryLock(10, TimeUnit.SECONDS);
         Thread.sleep(3600000);
         fairLock.unlock();
     }
@@ -59,12 +112,13 @@ public class RedissonApplication {
      * @throws Exception
      */
     private static void clusterServerReentrantLock() throws Exception {
-        RedissonClient redisson = getRedissonClient();
+        RedissonClient redisson = getClusterRedissonClient();
 
         // Get Redis based implementation of java.util.concurrent.locks.Lock
         RLock lock = redisson.getLock("myLock");
 
         lock.lock();
+        // lock.tryLock(10, TimeUnit.SECONDS);
         Thread.sleep(3600000);
         lock.unlock();
     }
@@ -72,14 +126,10 @@ public class RedissonApplication {
     /**
      * 基于redis单实例简单看RedLock源码
      */
-    private static void singleServer() {
-        Config config = new Config();
-        config.useSingleServer().setAddress("redis://127.0.0.1:6379");
-        RedissonClient redissionClient = Redisson.create(config);
+    private static void singleServerRedLock() {
+        RedissonClient redissionClient = getSingleRedissonClient();
 
         RLock lock1 = redissionClient.getLock("lock1");
-//        lock1.lock();
-//        lock1.unlock();
         RLock lock2 = redissionClient.getLock("lock2");
         RLock lock3 = redissionClient.getLock("lock3");
 

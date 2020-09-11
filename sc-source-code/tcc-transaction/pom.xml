@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>tcc-transaction</artifactId>
+    <version>1.0.0</version>
+    <name>tcc-transaction</name>
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>com.xiaoliu.spring-cloud-learn</groupId>
+        <artifactId>source-code</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <modules>
+        <module>tcc-transaction-service-a-api</module>
+        <module>tcc-transaction-service-a</module>
+        <module>tcc-transaction-service-b</module>
+        <module>tcc-transaction-service-c-api</module>
+        <module>tcc-transaction-service-c</module>
+        <module>tcc-transaction-service-d-api</module>
+        <module>tcc-transaction-service-d</module>
+    </modules>
+</project>
