@@ -3,6 +3,7 @@ package com.xiaoliu.redisson;
 import org.redisson.Redisson;
 import org.redisson.RedissonRedLock;
 import org.redisson.api.RLock;
+import org.redisson.api.RReadWriteLock;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
 
@@ -17,7 +18,8 @@ public class RedissonApplication {
         // clusterServerReentrantLock();
         // clusterServerFairLock();
         // clusterServerMultiLock();
-        clusterServerRedLock();
+        // clusterServerRedLock();
+        clusterServerReadWriteLock();
     }
 
     /**
@@ -55,6 +57,24 @@ public class RedissonApplication {
         Config config = new Config();
         config.useSingleServer().setAddress("redis://127.0.0.1:6379");
         return Redisson.create(config);
+    }
+
+    /**
+     * 基于redis cluster集群的读写锁
+     *
+     * @throws Exception
+     */
+    private static void clusterServerReadWriteLock() throws Exception {
+        RedissonClient redisson = getClusterRedissonClient();
+        RReadWriteLock readWriteLock = redisson.getReadWriteLock("mylock");
+
+        RLock readLock = readWriteLock.readLock();
+        readLock.lock();
+        readLock.unlock();
+
+//        RLock writeLock = readWriteLock.writeLock();
+//        writeLock.lock();
+//        writeLock.unlock();
     }
 
     /**
@@ -118,8 +138,10 @@ public class RedissonApplication {
         RLock lock = redisson.getLock("myLock");
 
         lock.lock();
+        lock.lock();
         // lock.tryLock(10, TimeUnit.SECONDS);
-        Thread.sleep(3600000);
+        // Thread.sleep(3600000);
+        lock.unlock();
         lock.unlock();
     }
 

@@ -18,6 +18,7 @@
     </parent>
 
     <modules>
+        <module>spring-cloud-assembly</module>
         <module>transaction-service</module>
         <module>xa-transaction-service</module>
         <module>tcc-transaction</module>
