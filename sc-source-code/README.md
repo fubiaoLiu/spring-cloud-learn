@@ -74,4 +74,8 @@
 
   - reliable-message-service: 可靠消息服务 | 6009
 
-- best-effort-inform: 最大努力通知方案
+- best-effort-inform: 最大努力通知服务
+
+- redisson-service: redisson框架服务（分布式锁）
+
+- curator-service: curator框架服务（分布式锁）

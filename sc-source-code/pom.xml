@@ -25,6 +25,7 @@
         <module>reliable-message</module>
         <module>best-effort-inform</module>
         <module>redisson-service</module>
+        <module>curator-service</module>
     </modules>
 
     <properties>
