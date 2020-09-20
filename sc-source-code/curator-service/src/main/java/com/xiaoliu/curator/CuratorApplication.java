@@ -3,9 +3,11 @@ package com.xiaoliu.curator;
 import org.apache.curator.RetryPolicy;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
-import org.apache.curator.framework.recipes.locks.InterProcessMutex;
-import org.apache.curator.framework.recipes.locks.InterProcessSemaphoreMutex;
+import org.apache.curator.framework.recipes.locks.*;
 import org.apache.curator.retry.ExponentialBackoffRetry;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @description: Curator Demo
@@ -16,7 +18,60 @@ public class CuratorApplication {
     public static void main(String[] args) throws Exception {
         // testZookeeperNormal();
         // reentrantLock();
-        semaphore();
+        // semaphore();
+        // semaphoreMutex();
+        // readWriteLock();
+        multiLock();
+    }
+
+    /**
+     * 多锁
+     *
+     * @throws Exception
+     */
+    private static void multiLock() throws Exception {
+        CuratorFramework client = getClient();
+        List<InterProcessLock> locks = new ArrayList<>();
+        InterProcessMutex lock01 = new InterProcessMutex(client, "/locks/multi_lock01");
+        InterProcessMutex lock02 = new InterProcessMutex(client, "/locks/multi_lock02");
+        InterProcessMutex lock03 = new InterProcessMutex(client, "/locks/multi_lock03");
+        locks.add(lock01);
+        locks.add(lock02);
+        locks.add(lock03);
+
+        InterProcessMultiLock lock = new InterProcessMultiLock(locks);
+        lock.acquire();
+        lock.release();
+    }
+
+    /**
+     * 可重入读写锁
+     *
+     * @throws Exception
+     */
+    private static void readWriteLock() throws Exception {
+        CuratorFramework client = getClient();
+        String path = "/locks/rw_lock";
+        InterProcessReadWriteLock lock = new InterProcessReadWriteLock(client, path);
+        lock.readLock().acquire();
+        lock.readLock().release();
+
+        lock.writeLock().acquire();
+        lock.writeLock().release();
+    }
+
+    /**
+     * 非可重入锁
+     *
+     * @throws Exception
+     */
+    private static void semaphoreMutex() throws Exception {
+        CuratorFramework client = getClient();
+        String path = "/locks/semaphore_mutex";
+        InterProcessSemaphoreMutex lock = new InterProcessSemaphoreMutex(client, path);
+        lock.acquire();
+        Thread.sleep(1000);
+        lock.release();
     }
 
     /**
@@ -26,12 +81,12 @@ public class CuratorApplication {
      */
     private static void semaphore() throws Exception {
         CuratorFramework client = getClient();
-        String path = "/locks/lock_01";
+        String path = "/locks/semaphore";
+        InterProcessSemaphoreV2 semaphore = new InterProcessSemaphoreV2(client, path, 3);
 
-        InterProcessSemaphoreMutex lock = new InterProcessSemaphoreMutex(client, path);
-        lock.acquire();
+        Lease lease = semaphore.acquire();
         Thread.sleep(1000);
-        lock.release();
+        semaphore.returnLease(lease);
     }
 
     /**
