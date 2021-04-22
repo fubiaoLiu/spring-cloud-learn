@@ -15,7 +15,7 @@
     </parent>
 
     <properties>
-        <shiro.version>1.5.3</shiro.version>
+        <shiro.version>1.7.1</shiro.version>
         <mybatisplus-spring-boot-starter.version>1.0.5</mybatisplus-spring-boot-starter.version>
         <mybatisplus.version>2.1.8</mybatisplus.version>
     </properties>
